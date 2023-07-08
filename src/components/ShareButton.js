@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ShareButton = ({ imageSrc }) => {
-  const [isListVisible, setIsListVisible] = useState(false);
-
   const handleShareClick = (platform) => {
     let shareURL = '';
 
@@ -33,32 +31,11 @@ const ShareButton = ({ imageSrc }) => {
     }
   };
 
-  const toggleListVisibility = () => {
-    setIsListVisible(!isListVisible);
-  };
-
   return (
     <div className="share-button">
-      <button onClick={toggleListVisibility}>Share</button>
-      {isListVisible && (
-        <ul className="share-options">
-          <li>
-            <a href="#" onClick={() => handleShareClick('facebook')}>
-              Facebook
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => handleShareClick('twitter')}>
-              Twitter
-            </a>
-          </li>
-          <li>
-            <a href="#" onClick={() => handleShareClick('whatsapp')}>
-              WhatsApp
-            </a>
-          </li>
-        </ul>
-      )}
+      <button onClick={handleShareClick.bind(null, 'facebook')}>Facebook</button>
+      <button onClick={handleShareClick.bind(null, 'twitter')}>Twitter</button>
+      <button onClick={handleShareClick.bind(null, 'whatsapp')}>WhatsApp</button>
     </div>
   );
 };
