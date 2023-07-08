@@ -1,19 +1,20 @@
 import React from 'react';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
+import '../App.css'
 
-const ShareButton = ({ imageSrc }) => {
-  const shareURL = window.location.href;
+const ShareButton = ({ imageURL }) => {
+  const shareURL = `${window.location.href}?image=${encodeURIComponent(imageURL)}`;
 
   return (
     <div className="share-button">
       <FacebookShareButton url={shareURL}>
-        Facebook
+        <button className="facebook-share-button">Facebook</button>
       </FacebookShareButton>
       <TwitterShareButton url={shareURL}>
-        Twitter
+        <button className="twitter-share-button">Twitter</button>
       </TwitterShareButton>
       <WhatsappShareButton url={shareURL}>
-        WhatsApp
+        <button className="whatsapp-share-button">WhatsApp</button>
       </WhatsappShareButton>
     </div>
   );

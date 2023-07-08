@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import ImageDisplay from './components/ImageDisplay';
 import ShareButton from './components/ShareButton';
-import { Helmet } from 'react-helmet';
+import './App.css'
 
-const App = () => {
+const ImageDisplay = () => {
   const [imageURL, setImageURL] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchRandomImage();
@@ -17,6 +16,7 @@ const App = () => {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setImageURL(url);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching random image:', error);
     }
@@ -24,14 +24,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <Helmet>
-        {imageURL && <meta property="og:image" content={imageURL} />}
-      </Helmet>
-
-      <ImageDisplay imageURL={imageURL} />
-      <ShareButton />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <img src={imageURL} alt="Random Pic Generator" />
+          <ShareButton imageURL={imageURL} />
+        </div>
+      )}
     </div>
   );
 };
 
-export default App;
+export default ImageDisplay;
