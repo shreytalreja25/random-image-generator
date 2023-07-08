@@ -25,7 +25,7 @@ const ImageDisplay = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        imageURL && <img src={imageURL} alt="Random Image" />
+        imageURL && <img src={imageURL} alt="Random Pic Generator" />
       )}
     </div>
   );
