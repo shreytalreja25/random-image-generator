@@ -29,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <Helmet>
-        <meta name="image" content={imageURL} />
+        <meta name="og:image" content={imageURL} />
       </Helmet>
       {isLoading ? (
         <p>Loading...</p>
