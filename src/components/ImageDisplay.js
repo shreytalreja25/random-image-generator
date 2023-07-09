@@ -18,21 +18,25 @@ const ImageDisplay = () => {
 
       if (data.status === 'success') {
         setImageURL(data.message);
+
+        // Update the og:image meta tag
+        const metaTags = [
+          {
+            property: 'og:image',
+            content: data.message,
+          },
+        ];
+        Helmet.canUseDOM && Helmet.rewind();
+        Helmet.canUseDOM && Helmet.injectHelmetData({ metaTags });
       }
       setIsLoading(false);
-
-      // Update the og:image meta tag
-      Helmet.canUseDOM && Helmet.peek().metaTags.push({
-        property: 'og:image',
-        content: data.message,
-      });
     } catch (error) {
       console.error('Error fetching random image:', error);
     }
   };
 
   return (
-    <div className="App">
+    <div className="ImageDisplay">
       <Helmet>
         <meta property="og:image" content="" />
       </Helmet>
@@ -40,7 +44,7 @@ const ImageDisplay = () => {
         <p>Loading...</p>
       ) : (
         <div>
-          <img src={imageURL} alt="Random Dog Pic" />
+          <img src={imageURL} alt="Random Dog Img" />
           <ShareButton imageURL={imageURL} />
         </div>
       )}
