@@ -1,6 +1,5 @@
 import React from 'react';
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
-import '../App.css';
 
 const ShareButton = ({ imageURL }) => {
   const shareURL = `${window.location.href}?image=${encodeURIComponent(imageURL)}`;
@@ -8,13 +7,13 @@ const ShareButton = ({ imageURL }) => {
   return (
     <div className="share-button">
       <FacebookShareButton url={shareURL} quote="Check out this random image!">
-        <button className="facebook-share-button">Share on Facebook</button>
+        Share on Facebook
       </FacebookShareButton>
       <TwitterShareButton url={shareURL} title="Random Image">
-        <button className="twitter-share-button">Share on Twitter</button>
+        Share on Twitter
       </TwitterShareButton>
       <WhatsappShareButton url={shareURL} title="Random Image">
-        <button className="whatsapp-share-button">Share on WhatsApp</button>
+        Share on WhatsApp
       </WhatsappShareButton>
     </div>
   );
